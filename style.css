@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
 :root{
-  --bg:#0f1117; --panel:#181b24; --panel-2:#1f2430;
-  --border:#2a3040; --text:#e6e8ee; --muted:#8b93a7;
-  --accent:#6d8bff; --accent-hover:#5a79f5; --danger:#ff5c6c;
+  --bg:#2a3350; --panel:#333e5e; --panel-2:#3d496b;
+  --border:#4a577a; --text:#eef0f6; --muted:#aab3cc;
+  --accent:#6d8bff; --accent-hover:#5a79f5; --danger:#ff6b7a;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -10,7 +10,45 @@ body{
   background:var(--bg);color:var(--text);
   min-height:100vh;padding:40px 20px;line-height:1.5;
 }
-.wrap{max-width:720px;margin:0 auto}
+.wrap{max-width:720px;margin:0 auto;position:relative;z-index:1}
+
+/* ---- Flying bats (background layer) ---- */
+#bats{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;perspective:900px;perspective-origin:50% 40%}
+.bat{position:fixed;left:0;top:0;will-change:transform;transform-style:preserve-3d}
+.bat-inner{width:100%;animation:bob var(--flap,.35s) ease-in-out infinite}
+.bat svg{display:block;width:100%;height:auto;overflow:visible}
+.bat svg path{fill:#080a12}
+
+.wing{transform-box:fill-box}
+.wing-l{transform-origin:100% 40%;animation:flapL var(--flap,.35s) ease-in-out infinite}
+.wing-r{transform-origin:0% 40%;animation:flapR var(--flap,.35s) ease-in-out infinite}
+
+@keyframes flapL{
+  0%,100%{transform:rotate(20deg)}
+  50%{transform:rotate(-26deg)}
+}
+@keyframes flapR{
+  0%,100%{transform:rotate(-20deg)}
+  50%{transform:rotate(26deg)}
+}
+@keyframes bob{
+  0%,100%{transform:translateY(3%)}
+  50%{transform:translateY(-4%)}
+}
+@keyframes fly{
+  0%{transform:translate3d(-15vw,0,-260px) rotateY(18deg)}
+  25%{transform:translate3d(25vw,-7vh,140px) rotateY(-12deg) rotateX(10deg)}
+  50%{transform:translate3d(60vw,5vh,-180px) rotateY(14deg) rotateX(-8deg)}
+  75%{transform:translate3d(92vw,-6vh,220px) rotateY(-10deg) rotateX(6deg)}
+  100%{transform:translate3d(120vw,3vh,-120px) rotateY(12deg)}
+}
+@keyframes flyR{
+  0%{transform:translate3d(120vw,0,-260px) rotateY(198deg)}
+  25%{transform:translate3d(80vw,6vh,160px) rotateY(168deg) rotateX(10deg)}
+  50%{transform:translate3d(45vw,-5vh,-180px) rotateY(194deg) rotateX(-8deg)}
+  75%{transform:translate3d(12vw,7vh,240px) rotateY(170deg) rotateX(6deg)}
+  100%{transform:translate3d(-15vw,-3vh,-120px) rotateY(186deg)}
+}
 header{margin-bottom:28px}
 h1{
   font-family:'Racing Sans One',sans-serif;
