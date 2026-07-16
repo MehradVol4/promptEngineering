@@ -18,7 +18,14 @@
       <input id="title" type="text" placeholder="e.g. Blog post outline generator" maxlength="120">
       <label for="content">Prompt</label>
       <textarea id="content" placeholder="Write your prompt here..."></textarea>
-      <button class="save-btn" id="saveBtn">Save prompt</button>
+      <div class="save-row">
+        <button class="save-btn" id="saveBtn">Save prompt</button>
+        <select id="rating">
+          <option value="useful">Very useful</option>
+          <option value="mid">Mid</option>
+          <option value="bad">Bad</option>
+        </select>
+      </div>
     </div>
 
     <div class="list-head">

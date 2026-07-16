@@ -33,6 +33,21 @@ button{
 button:active{transform:translateY(1px)}
 .save-btn{background:var(--accent);color:#fff;padding:11px 22px;font-size:14px}
 .save-btn:hover{background:var(--accent-hover)}
+.save-row{display:flex;align-items:center;gap:12px}
+#rating{
+  width:auto;margin:0;background:var(--panel-2);border:1px solid var(--border);
+  color:var(--text);border-radius:9px;padding:11px 13px;font-size:14px;
+  font-family:inherit;cursor:pointer;
+}
+#rating:focus{outline:none;border-color:var(--accent)}
+
+.badge{
+  display:inline-block;margin-top:12px;padding:4px 12px;border-radius:20px;
+  font-size:12px;font-weight:600;
+}
+.badge.useful{background:rgba(74,222,128,.15);color:#4ade80}
+.badge.mid{background:rgba(250,204,21,.15);color:#facc15}
+.badge.bad{background:rgba(255,92,108,.15);color:#ff5c6c}
 
 .list-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .list-head h2{font-size:17px;font-weight:600}

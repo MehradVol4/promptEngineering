@@ -3,6 +3,9 @@ const titleEl = document.getElementById("title");
 const contentEl = document.getElementById("content");
 const listEl = document.getElementById("list");
 const countEl = document.getElementById("count");
+const ratingEl = document.getElementById("rating");
+
+const RATING_LABELS = { useful: "Very useful", mid: "Mid", bad: "Bad" };
 
 function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || []; }catch{ return []; } }
 function persist(items){ localStorage.setItem(KEY, JSON.stringify(items)); }
@@ -40,6 +43,14 @@ function render(){
 
     card.appendChild(top);
     card.appendChild(c);
+
+    if(item.rating){
+      const badge = document.createElement("span");
+      badge.className = "badge " + item.rating;
+      badge.textContent = RATING_LABELS[item.rating];
+      card.appendChild(badge);
+    }
+
     listEl.appendChild(card);
   });
 }
@@ -52,7 +63,7 @@ function savePrompt(){
     return;
   }
   const items = load();
-  items.unshift({ id: Date.now().toString(36)+Math.random().toString(36).slice(2,6), title, content });
+  items.unshift({ id: Date.now().toString(36)+Math.random().toString(36).slice(2,6), title, content, rating: ratingEl.value });
   persist(items);
   titleEl.value = "";
   contentEl.value = "";
