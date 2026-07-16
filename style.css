@@ -4,13 +4,57 @@
   --border:#4a577a; --text:#eef0f6; --muted:#aab3cc;
   --accent:#6d8bff; --accent-hover:#5a79f5; --danger:#ff6b7a;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;cursor:none}
 body{
   font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
   background:var(--bg);color:var(--text);
   min-height:100vh;padding:40px 20px;line-height:1.5;
 }
 .wrap{max-width:720px;margin:0 auto;position:relative;z-index:1}
+
+/* ---- Custom Bat-signal cursor ---- */
+#cursor{
+  position:fixed;top:0;left:0;z-index:99999;pointer-events:none;
+  margin-left:-16px;margin-top:-8px;will-change:transform;
+  perspective:420px;
+}
+.cursor-3d{
+  transform-style:preserve-3d;
+  transform:rotateZ(22deg) rotateX(16deg);
+  animation:cursorSway 3.2s ease-in-out infinite;
+}
+.beam{
+  width:34px;height:104px;border-radius:20px;
+  background:linear-gradient(155deg, rgba(255,238,70,.38), rgba(255,205,8,.16) 70%, rgba(255,205,8,.05));
+  -webkit-backdrop-filter:blur(3px) saturate(1.5);
+  backdrop-filter:blur(3px) saturate(1.5);
+  border:1px solid rgba(255,240,120,.65);
+  box-shadow:
+    0 10px 26px rgba(255,210,10,.35),
+    inset 0 0 20px rgba(255,255,255,.4),
+    inset 4px 6px 10px rgba(255,255,255,.25);
+}
+.beam::after{ /* glossy streak for the glass */
+  content:"";position:absolute;top:8px;left:7px;width:9px;height:60px;
+  border-radius:10px;background:linear-gradient(rgba(255,255,255,.65),transparent);
+  filter:blur(1px);
+}
+.emblem{
+  position:absolute;top:-14px;left:50%;width:40px;height:26px;
+  transform:translateX(-50%) translateZ(26px);
+  filter:drop-shadow(0 4px 8px rgba(255,210,10,.6));
+  animation:emblemGlow 2s ease-in-out infinite;
+}
+.emblem svg{display:block;width:100%;height:100%}
+
+@keyframes cursorSway{
+  0%,100%{transform:rotateZ(22deg) rotateX(16deg) rotateY(-10deg)}
+  50%{transform:rotateZ(18deg) rotateX(22deg) rotateY(12deg)}
+}
+@keyframes emblemGlow{
+  0%,100%{filter:drop-shadow(0 4px 8px rgba(255,210,10,.5));transform:translateX(-50%) translateZ(26px) scale(1)}
+  50%{filter:drop-shadow(0 6px 16px rgba(255,225,60,.95));transform:translateX(-50%) translateZ(34px) scale(1.08)}
+}
 
 /* ---- Moon ---- */
 .moon{

@@ -117,3 +117,39 @@ function spawnBats(count){
 }
 
 spawnBats(28);
+
+/* ---- Custom Bat-signal cursor ---- */
+(function customCursor(){
+  const cursor = document.createElement("div");
+  cursor.id = "cursor";
+  cursor.innerHTML = `
+    <div class="cursor-3d">
+      <div class="beam"></div>
+      <div class="emblem">
+        <svg viewBox="0 0 100 62" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="50" cy="31" rx="49" ry="30" fill="#0a0a0a"/>
+          <ellipse cx="50" cy="31" rx="43" ry="24" fill="#ffd60a"/>
+          <path fill="#0a0a0a" d="M50 15 C47 15 45 19 45 23
+            C41 19 34 20 32 25 C35 23 30 22 26 26
+            C31 28 31 34 35 37 C37 32 41 34 43 39
+            C45 34 47 34 50 41 C53 34 55 34 57 39
+            C59 34 63 32 65 37 C69 34 69 28 74 26
+            C70 22 65 23 68 25 C66 20 59 19 55 23
+            C55 19 53 15 50 15 Z"/>
+        </svg>
+      </div>
+    </div>`;
+  document.body.appendChild(cursor);
+
+  let mx = innerWidth/2, my = innerHeight/2, cx = mx, cy = my;
+  addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; });
+  addEventListener("mouseleave", () => cursor.style.opacity = "0");
+  addEventListener("mouseenter", () => cursor.style.opacity = "1");
+
+  (function follow(){
+    cx += (mx - cx) * 0.2;   // trailing / glassy lag
+    cy += (my - cy) * 0.2;
+    cursor.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+    requestAnimationFrame(follow);
+  })();
+})();
