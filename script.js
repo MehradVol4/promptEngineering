@@ -29,13 +29,24 @@ function render(){
     t.className = "prompt-title";
     t.textContent = item.title;
 
+    const right = document.createElement("div");
+    right.className = "prompt-actions";
+
     const del = document.createElement("button");
     del.className = "del-btn";
     del.textContent = "Delete";
     del.onclick = () => removePrompt(item.id);
+    right.appendChild(del);
+
+    if(item.rating){
+      const badge = document.createElement("span");
+      badge.className = "badge " + item.rating;
+      badge.textContent = RATING_LABELS[item.rating];
+      right.appendChild(badge);
+    }
 
     top.appendChild(t);
-    top.appendChild(del);
+    top.appendChild(right);
 
     const c = document.createElement("div");
     c.className = "prompt-content";
@@ -43,14 +54,6 @@ function render(){
 
     card.appendChild(top);
     card.appendChild(c);
-
-    if(item.rating){
-      const badge = document.createElement("span");
-      badge.className = "badge " + item.rating;
-      badge.textContent = RATING_LABELS[item.rating];
-      card.appendChild(badge);
-    }
-
     listEl.appendChild(card);
   });
 }
