@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Library</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Prompt Library</h1>
+      <p>Save, browse, and manage your favorite prompts. Stored locally in your browser.</p>
+    </header>
+
+    <div class="card">
+      <label for="title">Title</label>
+      <input id="title" type="text" placeholder="e.g. Blog post outline generator" maxlength="120">
+      <label for="content">Prompt</label>
+      <textarea id="content" placeholder="Write your prompt here..."></textarea>
+      <button class="save-btn" id="saveBtn">Save prompt</button>
+    </div>
+
+    <div class="list-head">
+      <h2>Saved prompts</h2>
+      <span class="count" id="count"></span>
+    </div>
+    <div id="list"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
