@@ -12,6 +12,34 @@ body{
 }
 .wrap{max-width:720px;margin:0 auto;position:relative;z-index:1}
 
+/* ---- Moon ---- */
+.moon{
+  position:fixed;top:36px;right:48px;width:135px;height:135px;border-radius:50%;
+  z-index:0;
+  background:
+    radial-gradient(circle at 66% 64%, rgba(120,128,148,.55) 0 6%, transparent 7%),
+    radial-gradient(circle at 42% 58%, rgba(120,128,148,.5) 0 5%, transparent 6%),
+    radial-gradient(circle at 57% 34%, rgba(120,128,148,.45) 0 4%, transparent 5%),
+    radial-gradient(circle at 30% 68%, rgba(120,128,148,.4) 0 3.5%, transparent 4.5%),
+    radial-gradient(circle at 74% 40%, rgba(120,128,148,.35) 0 3%, transparent 4%),
+    radial-gradient(circle at 48% 78%, rgba(120,128,148,.35) 0 2.5%, transparent 3.5%),
+    radial-gradient(circle at 35% 32%, #ffffff 0%, #e7ebf2 44%, #c0c7d5 72%, #949db0 100%);
+  box-shadow:
+    0 0 42px 10px rgba(210,224,255,.55),
+    0 0 100px 34px rgba(150,180,255,.28),
+    inset -20px -24px 48px rgba(16,22,40,.6),
+    inset 14px 16px 32px rgba(255,255,255,.28);
+}
+.moon::before{
+  content:"";position:absolute;inset:-45px;border-radius:50%;
+  background:radial-gradient(circle, rgba(180,200,255,.35) 0%, transparent 70%);
+  animation:moonPulse 5s ease-in-out infinite;z-index:-1;
+}
+@keyframes moonPulse{
+  0%,100%{opacity:.55;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.08)}
+}
+
 /* ---- Flying bats (background layer) ---- */
 #bats{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;perspective:900px;perspective-origin:50% 40%}
 .bat{position:fixed;left:0;top:0;will-change:transform;transform-style:preserve-3d}
